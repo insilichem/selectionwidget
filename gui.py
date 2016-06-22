@@ -61,7 +61,7 @@ class SelectionDialog(ModelessDialog):
 
     buttons = ('OK', 'Close')
     default = None
-    help = 'https://www.insilichem.com'
+    help = False
 
     # Some constants
     special_keys = ['??', 'Alt_L', 'Caps_Lock', 'Control_L',
