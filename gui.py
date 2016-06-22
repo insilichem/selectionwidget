@@ -85,7 +85,7 @@ class SelectionDialog(ModelessDialog):
         self.mode = mode
 
         # Private vars
-        self._re = re.compile(r'(\s)')
+        self._re = re.compile(r'(\s+)')
         self._old_selection = self.current()
         self._colored_molecules = []
         self._depicted = []
@@ -101,6 +101,8 @@ class SelectionDialog(ModelessDialog):
 
         # Fix styles
         self._fix_styles(*self.buttonWidgets.values())
+        self._toplevel.attributes('-topmost',True)
+        self._toplevel.resizable(width=True, height=False)
 
         # Triggers
         chimera.viewer.background = chimera.MaterialColor.lookup('white')
