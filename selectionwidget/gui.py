@@ -120,8 +120,8 @@ class SelectionDialog(ModelessDialog):
         global ui
         ui = None
         ModelessDialog.Close(self)
+        chimera.extension.manager.deregisterInstance(self)
         self.destroy()
-
 
 
 # Custom widgets
