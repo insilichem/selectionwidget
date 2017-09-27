@@ -194,7 +194,7 @@ class SelectionItem(object):
     @property
     def ok(self):
         if self._ok is None:
-            self.validate(self.text)
+            self.validate()
         return self._ok
 
     def __str__(self):
