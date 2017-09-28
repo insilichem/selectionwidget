@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-# Get used to importing this in your Py27 projects!
+
 from __future__ import print_function, division 
 # Python stdlib
 import Tkinter as tk
@@ -23,13 +23,10 @@ An Excel-like selection dialog for UCSF Chimera
 
 ui = None
 def showUI(callback=None):
-    """
-    Requested by Chimera way-of-doing-things
-    """
     if chimera.nogui:
         tk.Tk().withdraw()
     global ui
-    if not ui: # Edit this to reflect the name of the class!
+    if not ui:
         ui = SelectionDialog()
     ui.enter()
     if callback:
@@ -49,14 +46,6 @@ STYLES = {
 }
 
 class SelectionDialog(ModelessDialog):
-
-    """
-    To display a new dialog on the interface, you will normally inherit from
-    ModelessDialog class of chimera.baseDialog module. Being modeless means
-    you can have this dialog open while using other parts of the interface.
-    If you don't want this behaviour and instead you want your extension to 
-    claim exclusive usage, use ModalDialog.
-    """
 
     buttons = ('OK', 'Close')
     default = None
@@ -93,10 +82,6 @@ class SelectionDialog(ModelessDialog):
                 print('Error fixing styles:', type(e), str(e))
 
     def fillInUI(self, parent):
-        """
-        This is the main part of the interface. With this method you code
-        the whole dialog, buttons, textareas and everything.
-        """
         self.canvas = tk.Frame(parent)
         self.canvas.pack(expand=True, fill='x')
         self.entry = ChimeraSelectionEntry(self.canvas, mode=self.mode, respond_to_focus=False, width=50)
@@ -104,15 +89,9 @@ class SelectionDialog(ModelessDialog):
         self.entry.desaturate()
 
     def OK(self):
-        """
-        Default! Triggered action if you click on an OK button
-        """
         self.Close()
 
     def Close(self):
-        """
-        Default! Triggered action if you click on the Close button
-        """
         chimera.viewer.background = None
         self.entry.resaturate()
         for (trigger, key), handler in self.entry._handlers.items():
